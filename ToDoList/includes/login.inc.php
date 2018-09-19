@@ -6,10 +6,10 @@
         exit();
     } else {
         include_once('dbh.inc.php');
-    
+
         $username=mysqli_real_escape_string($dbConnection,$_POST['username']);
         $pass=mysqli_real_escape_string($dbConnection,$_POST['password']);
-                    
+
         //Some error handling
 
         if (empty($username) || empty($pass)){
@@ -18,6 +18,7 @@
         } else {
             $sql = "SELECT * FROM users WHERE user_username='$username' OR user_email='$username';";
             $result = mysqli_query($dbConnection, $sql);
+            mysqli_close($dbConnection);
             $resultCheck = mysqli_num_rows($result);
             //print_r($resultCheck);
             if ($resultCheck < 1){

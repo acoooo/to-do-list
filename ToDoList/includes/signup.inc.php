@@ -29,7 +29,7 @@ if (!isset($_POST['submit'])) {
                     header("Location: ../signup.php?signup=email");
                     exit();
                 } else {
-                    $sql = "SELECT * FROM users WHERE user_username='$username' OR user_password='$pass1';";
+                    $sql = "SELECT * FROM users WHERE user_username='$username';";
                     $result = mysqli_query($dbConnection, $sql);
                     $queryCheck = mysqli_num_rows($result);
                     if ($queryCheck > 0) {
@@ -39,15 +39,15 @@ if (!isset($_POST['submit'])) {
                         $hashedPassword=password_hash($pass1, PASSWORD_DEFAULT);
                         $sql = "INSERT INTO users (user_username, user_email, user_password) VALUES ('$username', '$email', '$hashedPassword');";
                         mysqli_query($dbConnection, $sql);
+                        mysqli_close($dbConnection);
                         header("Location: ../signup.php?signup=success");
                         exit();
                     }
                 }
-            }   
+            }
         }
     }
-    
+
 }
 
 ?>
-
