@@ -159,7 +159,7 @@ header .nav-login a {
 }
 
 .task-input {
-    width: 83%;
+    width: 80%;
     height: 15px;
     padding: 10px;
     /*margin-top: 10px;*/
@@ -218,6 +218,14 @@ tr:hover {
   text-decoration: none;
 }
 
+.update a {
+  color: white;
+  background: green;
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
 form p {
     padding-bottom: 10px;
 }
@@ -230,4 +238,10 @@ form p {
     color: green;
     text-align: center;
     font-size: 20px;
+}
+
+/*Testing the update button*/
+
+.task input  {
+  width: 100%;
 }

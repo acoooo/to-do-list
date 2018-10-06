@@ -35,6 +35,7 @@
     $task_id = $_GET['delete_task'];
     $delete_task= "DELETE FROM tasks WHERE task_id=$task_id";
     mysqli_query($dbConnection, $delete_task);
+    mysqli_close($dbConnection);
     header('Location:home.php?list=updated');
   }
 
@@ -49,7 +50,7 @@
     $url="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     if (strpos($url, "task=empty") == true) {
       echo "<p class='error'> Please enter something in the task field!";
-    } 
+    }
     elseif (strpos($url, "list=updated") == true) {
       echo "<p class='success'> DB field updated!";
     }
@@ -64,7 +65,7 @@
     <tr>
       <th>#</th>
       <th>Task</th>
-      <th>Action</th>
+      <th colspan="2">Action</th>
     </tr>
   </thead>
 
@@ -73,9 +74,13 @@
     <tr>
       <td><?php echo $i;?></td>
       <td class="task"><?php echo $row['task_text'];?></td>
+      <td class="update">
+          <a href="updatetask.php?update_task=<?php echo $row['task_id'];?>">?</a>
+      </td>
       <td class="delete">
           <a href="task.php?delete_task=<?php echo $row['task_id'];?>">X</a>
       </td>
+
     </tr>
     <?php $i++; }; ?>
   </tbody>
